@@ -17,13 +17,6 @@ const Hero = () => {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/60 rounded-[2rem]" />
-          
-          {/* Text Overlay on Banner */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-black text-white/90 tracking-tighter uppercase italic drop-shadow-2xl">
-              KACM <span className="text-red-600">ESPORTS</span>
-            </h1>
-          </div>
         </div>
 
         {/* Logo in Circle - Overlapping Bottom */}
@@ -40,6 +33,9 @@ const Hero = () => {
 
       {/* Content Below Banner */}
       <div className="mt-24 text-center max-w-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-4 tracking-tighter uppercase italic">
+          KACM <span className="text-red-600">ESPORTS</span>
+        </h1>
         <p className="text-gray-600 text-lg md:text-xl mb-8 font-medium">
           L'organisation esports de référence à Marrakech. Rejoignez l'élite du gaming marocain.
         </p>
