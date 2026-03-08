@@ -1,13 +1,16 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Trophy, Users, ShoppingBag, Tv, UserPlus, User, Globe, Moon } from 'lucide-react';
+import { Menu, X, Trophy, Users, ShoppingBag, Tv, UserPlus, User, Globe, Moon, Sun } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,10 +29,23 @@ const Navbar = () => {
     { name: 'Recrutement', href: '#join', icon: UserPlus },
   ];
 
+  const handleProfileClick = () => {
+    toast.info("Espace membre bientôt disponible !");
+  };
+
+  const handleLanguageClick = () => {
+    toast.info("Le changement de langue sera bientôt disponible.");
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    toast.success(`Mode ${theme === "dark" ? "clair" : "sombre"} activé`);
+  };
+
   return (
     <nav className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-      isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-3" : "bg-transparent"
+      isScrolled ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md py-3" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -42,7 +58,9 @@ const Navbar = () => {
             "font-bold text-xl tracking-tighter",
             isScrolled ? "text-red-600" : "text-white"
           )}>
-            KACM <span className={isScrolled ? "text-black" : "text-white/80"}>ESPORTS</span>
+            KACM <span className={cn(
+              isScrolled ? "text-black dark:text-white" : "text-white/80"
+            )}>ESPORTS</span>
           </span>
         </div>
 
@@ -55,7 +73,7 @@ const Navbar = () => {
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-red-500",
-                  isScrolled ? "text-gray-800" : "text-white"
+                  isScrolled ? "text-gray-800 dark:text-gray-200" : "text-white"
                 )}
               >
                 {link.name}
@@ -65,17 +83,26 @@ const Navbar = () => {
 
           {/* Action Icons */}
           <div className="flex items-center gap-3">
-            <button className={cn(
-              "w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110",
-              isScrolled ? "border-red-600 text-red-600" : "border-white text-white"
-            )}>
+            <button 
+              onClick={handleProfileClick}
+              className={cn(
+                "w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110",
+                isScrolled ? "border-red-600 text-red-600" : "border-white text-white"
+              )}
+            >
               <User size={20} />
             </button>
-            <button className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20">
+            <button 
+              onClick={handleLanguageClick}
+              className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20"
+            >
               <Globe size={20} />
             </button>
-            <button className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20">
-              <Moon size={20} />
+            <button 
+              onClick={toggleTheme}
+              className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
 
@@ -95,27 +122,36 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-xl p-6 flex flex-col gap-4 md:hidden animate-in slide-in-from-top duration-300">
+        <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-xl p-6 flex flex-col gap-4 md:hidden animate-in slide-in-from-top duration-300">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center gap-3 text-lg font-semibold text-gray-800 hover:text-red-600"
+              className="flex items-center gap-3 text-lg font-semibold text-gray-800 dark:text-gray-200 hover:text-red-600"
             >
               {link.icon && <link.icon size={20} className="text-red-600" />}
               {link.name}
             </a>
           ))}
-          <div className="flex items-center gap-4 py-4 border-t border-gray-100">
-            <button className="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center text-red-600">
+          <div className="flex items-center gap-4 py-4 border-t border-gray-100 dark:border-gray-800">
+            <button 
+              onClick={handleProfileClick}
+              className="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center text-red-600"
+            >
               <User size={24} />
             </button>
-            <button className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white">
+            <button 
+              onClick={handleLanguageClick}
+              className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white"
+            >
               <Globe size={24} />
             </button>
-            <button className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white">
-              <Moon size={24} />
+            <button 
+              onClick={toggleTheme}
+              className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white"
+            >
+              {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
             </button>
           </div>
           <Button className="bg-red-600 hover:bg-red-700 text-white w-full py-6 text-lg">
