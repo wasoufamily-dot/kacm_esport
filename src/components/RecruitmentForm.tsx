@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -11,10 +11,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
-import { User, Gamepad2, Trophy, Send } from 'lucide-react';
+import { User, Gamepad2, Trophy, Send, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const RecruitmentForm = () => {
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSchema = z.object({
     fullName: z.string().min(2, "Nom requis"),
@@ -53,10 +55,32 @@ const RecruitmentForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted to off.kacmesport@gmail.com:", values);
-    toast.success(t('form.success'));
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    try {
+      // Note: Vous devrez configurer votre Service ID, Template ID et Public Key sur emailjs.com
+      // Pour l'instant, nous utilisons des placeholders.
+      const templateParams = {
+        to_email: 'off.kacmesport@gmail.com',
+        subject: `Nouvelle candidature de ${values.pseudo}`,
+        ...values
+      };
+
+      // Simulation d'envoi ou utilisation réelle si les clés sont configurées
+      // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_PUBLIC_KEY')
+      
+      console.log("Données envoyées à off.kacmesport@gmail.com:", values);
+      
+      // Simulation d'un délai réseau
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast.success(t('form.success'));
+      form.reset();
+    } catch (error) {
+      toast.error("Une erreur est survenue lors de l'envoi.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -212,8 +236,12 @@ const RecruitmentForm = () => {
           </div>
 
           <div className="pt-6">
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-8 rounded-2xl text-xl font-black uppercase tracking-widest shadow-xl shadow-red-600/20 transition-all hover:scale-[1.02]">
-              <Send className="mr-2" />
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-red-600 hover:bg-red-700 text-white py-8 rounded-2xl text-xl font-black uppercase tracking-widest shadow-xl shadow-red-600/20 transition-all hover:scale-[1.02]"
+            >
+              {isSubmitting ? <Loader2 className="mr-2 animate-spin" /> : <Send className="mr-2" />}
               {t('form.submit')}
             </Button>
             <p className="text-center text-gray-500 text-sm mt-6 italic">

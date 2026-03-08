@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -13,10 +13,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
-import { User, MapPin, ShoppingBag, CreditCard, Send } from 'lucide-react';
+import { User, MapPin, ShoppingBag, CreditCard, Send, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const OrderForm = () => {
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSchema = z.object({
     fullName: z.string().min(2, "Nom requis"),
@@ -43,10 +45,29 @@ const OrderForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Order submitted to off.kacmesport@gmail.com:", values);
-    toast.success(t('order.success'));
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    try {
+      // Note: Vous devrez configurer votre Service ID, Template ID et Public Key sur emailjs.com
+      const templateParams = {
+        to_email: 'off.kacmesport@gmail.com',
+        subject: `Nouvelle commande de ${values.fullName}`,
+        ...values
+      };
+
+      // Simulation d'envoi
+      console.log("Commande envoyée à off.kacmesport@gmail.com:", values);
+      
+      // Simulation d'un délai réseau
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast.success(t('order.success'));
+      form.reset();
+    } catch (error) {
+      toast.error("Une erreur est survenue lors de l'envoi de la commande.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const products = [
@@ -183,8 +204,12 @@ const OrderForm = () => {
           </div>
 
           <div className="pt-6">
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-8 rounded-2xl text-xl font-black uppercase tracking-widest shadow-xl shadow-red-600/20 transition-all hover:scale-[1.02]">
-              <Send className="mr-2" />
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-red-600 hover:bg-red-700 text-white py-8 rounded-2xl text-xl font-black uppercase tracking-widest shadow-xl shadow-red-600/20 transition-all hover:scale-[1.02]"
+            >
+              {isSubmitting ? <Loader2 className="mr-2 animate-spin" /> : <Send className="mr-2" />}
               {t('order.submit')}
             </Button>
             <p className="text-center text-gray-500 text-sm mt-6 italic">
