@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Trophy, Users, ShoppingBag, Tv, UserPlus } from 'lucide-react';
+import { Menu, X, Trophy, Users, ShoppingBag, Tv, UserPlus, User, Globe, Moon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -47,20 +47,39 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-red-500",
-                isScrolled ? "text-gray-800" : "text-white"
-              )}
-            >
-              {link.name}
-            </a>
-          ))}
-          <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6">
+        <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center gap-8 mr-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-red-500",
+                  isScrolled ? "text-gray-800" : "text-white"
+                )}
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Action Icons */}
+          <div className="flex items-center gap-3">
+            <button className={cn(
+              "w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110",
+              isScrolled ? "border-red-600 text-red-600" : "border-white text-white"
+            )}>
+              <User size={20} />
+            </button>
+            <button className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20">
+              <Globe size={20} />
+            </button>
+            <button className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20">
+              <Moon size={20} />
+            </button>
+          </div>
+
+          <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 ml-2">
             Suivre
           </Button>
         </div>
@@ -88,6 +107,17 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
+          <div className="flex items-center gap-4 py-4 border-t border-gray-100">
+            <button className="w-12 h-12 rounded-full border-2 border-red-600 flex items-center justify-center text-red-600">
+              <User size={24} />
+            </button>
+            <button className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white">
+              <Globe size={24} />
+            </button>
+            <button className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white">
+              <Moon size={24} />
+            </button>
+          </div>
           <Button className="bg-red-600 hover:bg-red-700 text-white w-full py-6 text-lg">
             Suivre
           </Button>
