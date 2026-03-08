@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Index from "./pages/Index";
 import RecruitmentPage from "./pages/RecruitmentPage";
+import OrderPage from "./pages/OrderPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/recrutement" element={<RecruitmentPage />} />
+              <Route path="/commande" element={<OrderPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
