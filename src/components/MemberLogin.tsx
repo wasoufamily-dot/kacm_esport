@@ -33,43 +33,53 @@ const MemberLogin = () => {
         <p className="text-gray-400 mt-2 text-sm">Zone réservée aux joueurs officiels</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-8 space-y-6">
-        <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-bold uppercase tracking-wider text-gray-500">Nom du membre</Label>
-          <div className="relative">
-            <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+      <form onSubmit={handleSubmit} className="p-8 space-y-8">
+        <div className="space-y-3">
+          <Label htmlFor="name" className="text-[13px] font-black uppercase tracking-wider text-slate-500 block">
+            Nom du membre
+          </Label>
+          <div className="relative group">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors">
+              <User size={20} />
+            </div>
             <Input 
               id="name"
               placeholder="Ex: Y. BARKAMBIRI" 
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="pl-10 rounded-xl h-12"
+              className="pl-12 pr-4 py-7 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-0 transition-all text-lg font-medium placeholder:text-slate-300"
               required
             />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="code" className="text-sm font-bold uppercase tracking-wider text-gray-500">Code membre</Label>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+        <div className="space-y-3">
+          <Label htmlFor="code" className="text-[13px] font-black uppercase tracking-wider text-slate-500 block">
+            Code membre
+          </Label>
+          <div className="relative group">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors">
+              <Lock size={20} />
+            </div>
             <Input 
               id="code"
               type="password"
               placeholder="KACM-FF-XXX" 
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="pl-10 rounded-xl h-12"
+              className="pl-12 pr-4 py-7 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-0 transition-all text-lg font-medium placeholder:text-slate-300"
               required
             />
           </div>
         </div>
 
-        <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-7 rounded-xl text-lg font-black uppercase tracking-widest shadow-lg shadow-red-600/20 transition-all hover:scale-[1.02]">
-          Accéder à l’espace membre
-        </Button>
+        <div className="pt-2">
+          <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-8 rounded-2xl text-xl font-black uppercase tracking-widest shadow-xl shadow-red-600/20 transition-all hover:scale-[1.02] active:scale-95">
+            Accéder à l’espace membre
+          </Button>
+        </div>
         
-        <p className="text-center text-xs text-gray-400 italic">
+        <p className="text-center text-xs text-slate-400 italic font-medium">
           Le code membre est fourni par l'administrateur du club.
         </p>
       </form>
