@@ -12,7 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
 import { User, Gamepad2, Trophy, Send, Loader2 } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const RecruitmentForm = () => {
   const { t } = useLanguage();
@@ -58,26 +57,34 @@ const RecruitmentForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      // Note: Vous devrez configurer votre Service ID, Template ID et Public Key sur emailjs.com
-      // Pour l'instant, nous utilisons des placeholders.
-      const templateParams = {
-        to_email: 'off.kacmesport@gmail.com',
-        subject: `Nouvelle candidature de ${values.pseudo}`,
-        ...values
-      };
+      const subject = encodeURIComponent(`Candidature KACM Esports - ${values.pseudo}`);
+      const body = encodeURIComponent(
+        `Détails de la candidature :\n\n` +
+        `Nom complet : ${values.fullName}\n` +
+        `Pseudo : ${values.pseudo}\n` +
+        `Âge : ${values.age}\n` +
+        `Localisation : ${values.location}\n` +
+        `Téléphone : ${values.phone}\n` +
+        `Jeu principal : ${values.mainGame}\n` +
+        `Rank : ${values.rank}\n` +
+        `Rôle : ${values.role}\n` +
+        `Expérience : ${values.experienceYears}\n` +
+        `Plateforme : ${values.platform}\n` +
+        `Anciennes équipes : ${values.previousTeams || 'N/A'}\n` +
+        `Tournois : ${values.tournaments || 'N/A'}\n` +
+        `Réalisations : ${values.achievements || 'N/A'}\n\n` +
+        `Motivation :\n${values.motivation}`
+      );
 
-      // Simulation d'envoi ou utilisation réelle si les clés sont configurées
-      // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_PUBLIC_KEY')
+      const mailtoUrl = `mailto:off.kacmesport@gmail.com?subject=${subject}&body=${body}`;
       
-      console.log("Données envoyées à off.kacmesport@gmail.com:", values);
+      // فتح تطبيق البريد
+      window.location.href = mailtoUrl;
       
-      // Simulation d'un délai réseau
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      toast.success(t('form.success'));
+      toast.success("Redirection vers votre application de messagerie...");
       form.reset();
     } catch (error) {
-      toast.error("Une erreur est survenue lors de l'envoi.");
+      toast.error("Une erreur est survenue.");
     } finally {
       setIsSubmitting(false);
     }
@@ -245,7 +252,7 @@ const RecruitmentForm = () => {
               {t('form.submit')}
             </Button>
             <p className="text-center text-gray-500 text-sm mt-6 italic">
-              L'équipe KACM examine chaque demande avec attention. Nous vous contacterons si votre profil correspond à nos besoins.
+              En cliquant sur envoyer, votre application de messagerie s'ouvrira pour finaliser l'envoi.
             </p>
           </div>
         </form>

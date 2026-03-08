@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { useLanguage } from "@/context/LanguageContext";
 import { toast } from "sonner";
 import { User, MapPin, ShoppingBag, CreditCard, Send, Loader2 } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const OrderForm = () => {
   const { t } = useLanguage();
@@ -48,23 +47,29 @@ const OrderForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      // Note: Vous devrez configurer votre Service ID, Template ID et Public Key sur emailjs.com
-      const templateParams = {
-        to_email: 'off.kacmesport@gmail.com',
-        subject: `Nouvelle commande de ${values.fullName}`,
-        ...values
-      };
+      const subject = encodeURIComponent(`Nouvelle Commande KACM - ${values.fullName}`);
+      const body = encodeURIComponent(
+        `Détails de la commande :\n\n` +
+        `Produit : ${values.product}\n` +
+        `Taille : ${values.size}\n` +
+        `Mode de paiement : ${values.paymentMethod === 'cod' ? 'Paiement à la livraison' : values.paymentMethod}\n\n` +
+        `Informations client :\n` +
+        `Nom complet : ${values.fullName}\n` +
+        `Ville/Pays : ${values.location}\n` +
+        `Adresse : ${values.address}\n` +
+        `Téléphone : ${values.phone}\n` +
+        `Email : ${values.email}`
+      );
 
-      // Simulation d'envoi
-      console.log("Commande envoyée à off.kacmesport@gmail.com:", values);
+      const mailtoUrl = `mailto:off.kacmesport@gmail.com?subject=${subject}&body=${body}`;
       
-      // Simulation d'un délai réseau
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // فتح تطبيق البريد
+      window.location.href = mailtoUrl;
       
-      toast.success(t('order.success'));
+      toast.success("Redirection vers votre application de messagerie...");
       form.reset();
     } catch (error) {
-      toast.error("Une erreur est survenue lors de l'envoi de la commande.");
+      toast.error("Une erreur est survenue.");
     } finally {
       setIsSubmitting(false);
     }
@@ -213,7 +218,7 @@ const OrderForm = () => {
               {t('order.submit')}
             </Button>
             <p className="text-center text-gray-500 text-sm mt-6 italic">
-              L'équipe KACM Esports vous contactera par téléphone pour confirmer votre commande et les détails de livraison.
+              En cliquant sur envoyer, votre application de messagerie s'ouvrira pour finaliser l'envoi.
             </p>
           </div>
         </form>
