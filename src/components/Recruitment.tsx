@@ -4,14 +4,10 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { UserPlus, ArrowRight } from 'lucide-react';
 import { useLanguage } from "@/context/LanguageContext";
-import { toast } from "sonner";
+import { Link } from 'react-router-dom';
 
 const Recruitment = () => {
   const { t } = useLanguage();
-
-  const handleApply = () => {
-    toast.success(t('toast.apply_success'));
-  };
 
   return (
     <section id="join" className="py-24 bg-white dark:bg-gray-950">
@@ -24,8 +20,10 @@ const Recruitment = () => {
             </h2>
             <p className="text-gray-400 text-xl leading-relaxed">{t('join.desc')}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-              <Button onClick={handleApply} className="bg-red-600 hover:bg-red-700 text-white px-10 py-8 rounded-2xl text-xl font-black uppercase tracking-widest w-full sm:w-auto">
-                {t('join.apply')} <ArrowRight className="ml-2" />
+              <Button asChild className="bg-red-600 hover:bg-red-700 text-white px-10 py-8 rounded-2xl text-xl font-black uppercase tracking-widest w-full sm:w-auto">
+                <Link to="/recrutement">
+                  {t('join.apply')} <ArrowRight className="ml-2" />
+                </Link>
               </Button>
               <Button variant="ghost" className="text-white hover:bg-white/10 px-10 py-8 rounded-2xl text-xl font-bold w-full sm:w-auto">{t('join.more')}</Button>
             </div>
