@@ -44,7 +44,7 @@ const MemberLogin = () => {
             </div>
             <Input 
               id="name"
-              placeholder="Ex: Y. BARKAMBIRI" 
+              placeholder="Nom du membre" 
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="pl-12 pr-4 py-7 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-0 transition-all text-lg font-medium placeholder:text-slate-300"
@@ -64,7 +64,7 @@ const MemberLogin = () => {
             <Input 
               id="code"
               type="password"
-              placeholder="KACM-FF-XXX" 
+              placeholder="Code membre" 
               value={code}
               onChange={(e) => setCode(e.target.value)}
               className="pl-12 pr-4 py-7 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-0 transition-all text-lg font-medium placeholder:text-slate-300"
