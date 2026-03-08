@@ -57,31 +57,32 @@ const RecruitmentForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      const subject = encodeURIComponent(`Candidature KACM Esports - ${values.pseudo}`);
-      const body = encodeURIComponent(
-        `Détails de la candidature :\n\n` +
-        `Nom complet : ${values.fullName}\n` +
-        `Pseudo : ${values.pseudo}\n` +
-        `Âge : ${values.age}\n` +
-        `Localisation : ${values.location}\n` +
-        `Téléphone : ${values.phone}\n` +
-        `Jeu principal : ${values.mainGame}\n` +
-        `Rank : ${values.rank}\n` +
-        `Rôle : ${values.role}\n` +
-        `Expérience : ${values.experienceYears}\n` +
-        `Plateforme : ${values.platform}\n` +
-        `Anciennes équipes : ${values.previousTeams || 'N/A'}\n` +
-        `Tournois : ${values.tournaments || 'N/A'}\n` +
-        `Réalisations : ${values.achievements || 'N/A'}\n\n` +
-        `Motivation :\n${values.motivation}`
-      );
+      const phoneNumber = "212632376024";
+      const message = 
+        `*Candidature KACM Esports*\n\n` +
+        `*Informations personnelles :*\n` +
+        `• Nom complet : ${values.fullName}\n` +
+        `• Pseudo : ${values.pseudo}\n` +
+        `• Âge : ${values.age}\n` +
+        `• Localisation : ${values.location}\n` +
+        `• Téléphone : ${values.phone}\n\n` +
+        `*Informations gaming :*\n` +
+        `• Jeu principal : ${values.mainGame}\n` +
+        `• Rank : ${values.rank}\n` +
+        `• Rôle : ${values.role}\n` +
+        `• Expérience : ${values.experienceYears}\n` +
+        `• Plateforme : ${values.platform}\n\n` +
+        `*Expérience :*\n` +
+        `• Anciennes équipes : ${values.previousTeams || 'N/A'}\n` +
+        `• Tournois : ${values.tournaments || 'N/A'}\n` +
+        `• Réalisations : ${values.achievements || 'N/A'}\n\n` +
+        `*Motivation :*\n${values.motivation}`;
 
-      const mailtoUrl = `mailto:off.kacmesport@gmail.com?subject=${subject}&body=${body}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       
-      // فتح تطبيق البريد
-      window.location.href = mailtoUrl;
+      window.open(whatsappUrl, '_blank');
       
-      toast.success("Redirection vers votre application de messagerie...");
+      toast.success("Redirection vers WhatsApp...");
       form.reset();
     } catch (error) {
       toast.error("Une erreur est survenue.");
@@ -252,7 +253,7 @@ const RecruitmentForm = () => {
               {t('form.submit')}
             </Button>
             <p className="text-center text-gray-500 text-sm mt-6 italic">
-              En cliquant sur envoyer, votre application de messagerie s'ouvrira pour finaliser l'envoi.
+              En cliquant sur envoyer, vous serez redirigé vers WhatsApp pour finaliser l'envoi de votre candidature.
             </p>
           </div>
         </form>

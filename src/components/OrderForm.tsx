@@ -47,26 +47,25 @@ const OrderForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      const subject = encodeURIComponent(`Nouvelle Commande KACM - ${values.fullName}`);
-      const body = encodeURIComponent(
-        `Détails de la commande :\n\n` +
-        `Produit : ${values.product}\n` +
-        `Taille : ${values.size}\n` +
-        `Mode de paiement : ${values.paymentMethod === 'cod' ? 'Paiement à la livraison' : values.paymentMethod}\n\n` +
-        `Informations client :\n` +
-        `Nom complet : ${values.fullName}\n` +
-        `Ville/Pays : ${values.location}\n` +
-        `Adresse : ${values.address}\n` +
-        `Téléphone : ${values.phone}\n` +
-        `Email : ${values.email}`
-      );
+      const phoneNumber = "212632376024";
+      const message = 
+        `*Nouvelle Commande KACM*\n\n` +
+        `*Détails de la commande :*\n` +
+        `• Produit : ${values.product}\n` +
+        `• Taille : ${values.size}\n` +
+        `• Paiement : ${values.paymentMethod === 'cod' ? 'Paiement à la livraison' : values.paymentMethod}\n\n` +
+        `*Informations client :*\n` +
+        `• Nom : ${values.fullName}\n` +
+        `• Ville/Pays : ${values.location}\n` +
+        `• Adresse : ${values.address}\n` +
+        `• Téléphone : ${values.phone}\n` +
+        `• Email : ${values.email}`;
 
-      const mailtoUrl = `mailto:off.kacmesport@gmail.com?subject=${subject}&body=${body}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       
-      // فتح تطبيق البريد
-      window.location.href = mailtoUrl;
+      window.open(whatsappUrl, '_blank');
       
-      toast.success("Redirection vers votre application de messagerie...");
+      toast.success("Redirection vers WhatsApp...");
       form.reset();
     } catch (error) {
       toast.error("Une erreur est survenue.");
@@ -177,7 +176,7 @@ const OrderForm = () => {
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="rounded-xl py-6">
-                      <SelectValue placeholder="Sélectionnez votre taille" />
+                      <SelectValue placeholder="Sélectionنز votre taille" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -218,7 +217,7 @@ const OrderForm = () => {
               {t('order.submit')}
             </Button>
             <p className="text-center text-gray-500 text-sm mt-6 italic">
-              En cliquant sur envoyer, votre application de messagerie s'ouvrira pour finaliser l'envoi.
+              En cliquant sur envoyer, vous serez redirigé vers WhatsApp pour finaliser votre commande.
             </p>
           </div>
         </form>
