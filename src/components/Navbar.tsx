@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 import { useLanguage } from "@/context/LanguageContext";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,12 +24,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: t('nav.home'), href: '#home', icon: null },
-    { name: t('nav.club'), href: '#about', icon: Trophy },
-    { name: t('nav.teams'), href: '#teams', icon: Users },
-    { name: t('nav.shop'), href: '#shop', icon: ShoppingBag },
-    { name: t('nav.live'), href: '#live', icon: Tv },
-    { name: t('nav.join'), href: '#join', icon: UserPlus },
+    { name: t('nav.home'), href: '/', isExternal: false },
+    { name: t('nav.club'), href: '/#about', isExternal: false },
+    { name: t('nav.teams'), href: '/#teams', isExternal: false },
+    { name: t('nav.shop'), href: '/#shop', isExternal: false },
+    { name: t('nav.live'), href: '/#live', isExternal: false },
+    { name: t('nav.join'), href: '/recrutement', isExternal: false },
   ];
 
   const toggleLanguage = () => {
@@ -43,26 +44,32 @@ const Navbar = () => {
       isScrolled ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md py-3" : "bg-transparent"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img src="https://a.top4top.io/p_3712vqtj61.png" alt="KACM Logo" className="h-10 w-auto" />
           <span className={cn("font-bold text-xl tracking-tighter", isScrolled ? "text-red-600" : "text-white")}>
             KACM <span className={cn(isScrolled ? "text-black dark:text-white" : "text-white/80")}>ESPORTS</span>
           </span>
-        </div>
+        </Link>
 
         <div className="hidden md:flex items-center gap-6">
           <div className="flex items-center gap-8 mr-4">
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className={cn("text-sm font-medium transition-colors hover:text-red-500", isScrolled ? "text-gray-800 dark:text-gray-200" : "text-white")}>
-                {link.name}
-              </a>
+              link.href.startsWith('/#') ? (
+                <a key={link.name} href={link.href} className={cn("text-sm font-medium transition-colors hover:text-red-500", isScrolled ? "text-gray-800 dark:text-gray-200" : "text-white")}>
+                  {link.name}
+                </a>
+              ) : (
+                <Link key={link.name} to={link.href} className={cn("text-sm font-medium transition-colors hover:text-red-500", isScrolled ? "text-gray-800 dark:text-gray-200" : "text-white")}>
+                  {link.name}
+                </Link>
+              )
             ))}
           </div>
 
           <div className="flex items-center gap-3">
-            <button onClick={() => toast.info("Espace membre bientôt disponible !")} className={cn("w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110", isScrolled ? "border-red-600 text-red-600" : "border-white text-white")}>
+            <Link to="/espace-membre" className={cn("w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110", isScrolled ? "border-red-600 text-red-600" : "border-white text-white")}>
               <User size={20} />
-            </button>
+            </Link>
             <button onClick={toggleLanguage} className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white transition-all hover:scale-110 shadow-lg shadow-red-600/20">
               <Globe size={20} />
             </button>
@@ -81,10 +88,19 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 shadow-xl p-6 flex flex-col gap-4 md:hidden">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 text-lg font-semibold text-gray-800 dark:text-gray-200 hover:text-red-600">
-              {link.name}
-            </a>
+            link.href.startsWith('/#') ? (
+              <a key={link.name} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 text-lg font-semibold text-gray-800 dark:text-gray-200 hover:text-red-600">
+                {link.name}
+              </a>
+            ) : (
+              <Link key={link.name} to={link.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 text-lg font-semibold text-gray-800 dark:text-gray-200 hover:text-red-600">
+                {link.name}
+              </Link>
+            )
           ))}
+          <Link to="/espace-membre" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 text-lg font-semibold text-red-600">
+            <User size={24} /> Espace Membre
+          </Link>
           <div className="flex items-center gap-4 py-4 border-t border-gray-100 dark:border-gray-800">
             <button onClick={toggleLanguage} className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white"><Globe size={24} /></button>
             <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white">
