@@ -50,8 +50,8 @@ const OrderForm = () => {
   };
 
   const products = [
-    { id: "maillot", name: "Maillot officiel KACM", price: "350 DH", image: "https://i.top4top.io/p_3713tfx0i1.jpeg" },
-    { id: "hoodie", name: "Hoodie officiel KACM", price: "Exclusif Membres", image: "https://e.top4top.io/p_3713vo24n1.jpeg" }
+    { id: "maillot", name: "Maillot officiel KACM", price: "Exclusif Membres", image: "https://i.top4top.io/p_3713tfx0i1.jpeg" },
+    { id: "hoodie", name: "Hoodie officiel KACM", price: "350 DH", image: "https://e.top4top.io/p_3713vo24n1.jpeg" }
   ];
 
   return (

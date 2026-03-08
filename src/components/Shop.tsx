@@ -10,18 +10,18 @@ const Shop = () => {
     {
       id: 1,
       name: "Maillot Officiel KACM",
-      price: "350 DH",
+      price: "Exclusif",
       image: "https://i.top4top.io/p_3713tfx0i1.jpeg",
-      desc: "Maillot officiel KACM Esports disponible pour tous les fans et supporters.",
-      badge: "Best Seller"
+      desc: "Maillot officiel KACM Esports réservé exclusivement aux membres du club.",
+      badge: "Membres"
     },
     {
       id: 2,
       name: "Hoodie Officiel KACM",
-      price: "Exclusif",
+      price: "350 DH",
       image: "https://e.top4top.io/p_3713vo24n1.jpeg",
-      desc: "Hoodie officiel KACM Esports réservé aux membres du club.",
-      badge: "Membres"
+      desc: "Hoodie officiel KACM Esports de haute qualité pour tous nos supporters.",
+      badge: "Best Seller"
     }
   ];
 
