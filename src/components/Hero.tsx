@@ -7,6 +7,8 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const Hero = () => {
   const { t } = useLanguage();
+  const instagramUrl = "https://www.instagram.com/kacmesport_off?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+
   return (
     <section id="home" className="relative min-h-[80vh] w-full flex flex-col items-center pt-32 pb-20 px-6 bg-background dark:bg-gray-950">
       <div className="relative w-full max-w-6xl aspect-[3/1] md:aspect-[4/1] rounded-[2rem] overflow-visible shadow-2xl">
@@ -26,7 +28,11 @@ const Hero = () => {
         </h1>
         <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl mb-8 font-medium">{t('hero.subtitle')}</p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-7 rounded-full font-bold uppercase tracking-widest shadow-lg shadow-red-600/20">{t('nav.follow')}</Button>
+          <Button asChild className="bg-red-600 hover:bg-red-700 text-white text-lg px-10 py-7 rounded-full font-bold uppercase tracking-widest shadow-lg shadow-red-600/20">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              {t('nav.follow')}
+            </a>
+          </Button>
           <Button variant="outline" className="border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 text-lg px-10 py-7 rounded-full font-bold uppercase tracking-widest hover:bg-gray-50 dark:hover:bg-gray-900">{t('hero.discover')}</Button>
         </div>
       </div>

@@ -38,6 +38,8 @@ const Navbar = () => {
     toast.success(t('toast.lang_switched'));
   };
 
+  const instagramUrl = "https://www.instagram.com/kacmesport_off?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==";
+
   return (
     <nav className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
@@ -77,7 +79,11 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
             </button>
           </div>
-          <Button className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 ml-2">{t('nav.follow')}</Button>
+          <Button asChild className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 ml-2">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              {t('nav.follow')}
+            </a>
+          </Button>
         </div>
 
         <button className="md:hidden text-red-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -107,6 +113,11 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
             </button>
           </div>
+          <Button asChild className="bg-red-600 hover:bg-red-700 text-white rounded-xl py-6 text-lg font-bold">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              {t('nav.follow')}
+            </a>
+          </Button>
         </div>
       )}
     </nav>
