@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import History from '@/components/History';
 import Teams from '@/components/Teams';
 import Shop from '@/components/Shop';
 import Live from '@/components/Live';
@@ -18,6 +19,7 @@ const Index = () => {
       <main>
         <Hero />
         <About />
+        <History />
         <Teams />
         <Shop />
         <Live />

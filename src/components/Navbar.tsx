@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Trophy, Users, ShoppingBag, Tv, UserPlus, User, Globe, Moon, Sun } from 'lucide-react';
+import { Menu, X, User, Globe, Moon, Sun } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -26,6 +26,7 @@ const Navbar = () => {
   const navLinks = [
     { name: t('nav.home'), href: '/', isExternal: false },
     { name: t('nav.club'), href: '/#about', isExternal: false },
+    { name: t('nav.history'), href: '/#history', isExternal: false },
     { name: t('nav.teams'), href: '/#teams', isExternal: false },
     { name: t('nav.shop'), href: '/#shop', isExternal: false },
     { name: t('nav.live'), href: '/#live', isExternal: false },
@@ -54,7 +55,7 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center gap-8 mr-4">
+          <div className="flex items-center gap-6 mr-4">
             {navLinks.map((link) => (
               link.href.startsWith('/#') ? (
                 <a key={link.name} href={link.href} className={cn("text-sm font-medium transition-colors hover:text-red-500", isScrolled ? "text-gray-800 dark:text-gray-200" : "text-white")}>
