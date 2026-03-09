@@ -27,7 +27,6 @@ const History = () => {
       title: t('history.2026.title'),
       desc: t('history.2026.desc'),
       image: matchAtlas,
-      // Vous pouvez remplacer ce lien par votre vidéo YouTube ou un fichier local
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
     }
   ];
@@ -70,8 +69,8 @@ const History = () => {
                       </div>
                     )}
 
-                    {/* Image (if no video or as fallback) */}
-                    {m.image && !m.videoUrl && (
+                    {/* Image */}
+                    {m.image && (
                       <div className="mt-4 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-inner">
                         <img src={m.image} alt={m.title} className="w-full h-auto object-cover" />
                       </div>
