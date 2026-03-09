@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from "@/context/LanguageContext";
-import { Calendar, Award, Rocket, Flag, Trophy } from 'lucide-react';
+import { Calendar, Award, Rocket, Flag, Trophy, PlayCircle } from 'lucide-react';
 import matchAtlas from '@/assets/match-atlas.png';
 
 const History = () => {
@@ -26,7 +26,9 @@ const History = () => {
       icon: Trophy,
       title: t('history.2026.title'),
       desc: t('history.2026.desc'),
-      image: matchAtlas
+      image: matchAtlas,
+      // Vous pouvez remplacer ce lien par votre vidéo YouTube ou un fichier local
+      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
     }
   ];
 
@@ -54,7 +56,22 @@ const History = () => {
                     <div className="text-red-600 font-black text-3xl mb-2 italic">{m.year}</div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 uppercase">{m.title}</h3>
                     <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-4">{m.desc}</p>
-                    {m.image && (
+                    
+                    {/* Video Player */}
+                    {m.videoUrl && (
+                      <div className="mt-6 mb-4 rounded-2xl overflow-hidden border-4 border-red-600/10 shadow-2xl aspect-video bg-black">
+                        <iframe 
+                          className="w-full h-full"
+                          src={m.videoUrl}
+                          title={m.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    )}
+
+                    {/* Image (if no video or as fallback) */}
+                    {m.image && !m.videoUrl && (
                       <div className="mt-4 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-inner">
                         <img src={m.image} alt={m.title} className="w-full h-auto object-cover" />
                       </div>
