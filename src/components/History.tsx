@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useLanguage } from "@/context/LanguageContext";
-import { Calendar, Award, Rocket, Flag } from 'lucide-react';
+import { Calendar, Award, Rocket, Flag, Trophy } from 'lucide-react';
+import matchAtlas from '@/assets/match-atlas.png';
 
 const History = () => {
   const { t } = useLanguage();
@@ -25,6 +26,13 @@ const History = () => {
       icon: Rocket,
       title: t('history.2024.title'),
       desc: t('history.2024.desc')
+    },
+    {
+      year: "2025",
+      icon: Trophy,
+      title: t('history.2025.title'),
+      desc: t('history.2025.desc'),
+      image: matchAtlas
     }
   ];
 
@@ -51,7 +59,12 @@ const History = () => {
                   <div className={`bg-white dark:bg-gray-900 p-8 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 relative group hover:border-red-600/30 transition-all ${i % 2 === 0 ? 'md:ml-12' : 'md:mr-12'}`}>
                     <div className="text-red-600 font-black text-3xl mb-2 italic">{m.year}</div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 uppercase">{m.title}</h3>
-                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed">{m.desc}</p>
+                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-4">{m.desc}</p>
+                    {m.image && (
+                      <div className="mt-4 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-inner">
+                        <img src={m.image} alt={m.title} className="w-full h-auto object-cover" />
+                      </div>
+                    )}
                   </div>
                 </div>
 
