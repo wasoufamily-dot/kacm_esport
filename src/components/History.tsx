@@ -28,6 +28,13 @@ const History = () => {
       desc: t('history.2026.desc'),
       image: matchAtlas,
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
+    },
+    {
+      year: "2026",
+      icon: Award,
+      title: t('history.2026_2.title'),
+      desc: t('history.2026_2.desc'),
+      videoUrl: "https://www.youtube.com/embed/nMQWYt_8Cnk" 
     }
   ];
 
