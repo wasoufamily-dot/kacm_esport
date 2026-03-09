@@ -26,8 +26,7 @@ const History = () => {
       icon: Trophy,
       title: t('history.2026.title'),
       desc: t('history.2026.desc'),
-      image: matchAtlas,
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
+      image: matchAtlas
     },
     {
       year: "2026",
