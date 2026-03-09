@@ -10,28 +10,22 @@ const History = () => {
 
   const milestones = [
     {
-      year: "2022",
-      icon: Flag,
-      title: t('history.2022.title'),
-      desc: t('history.2022.desc')
-    },
-    {
-      year: "2023",
-      icon: Award,
-      title: t('history.2023.title'),
-      desc: t('history.2023.desc')
-    },
-    {
       year: "2024",
-      icon: Rocket,
+      icon: Flag,
       title: t('history.2024.title'),
       desc: t('history.2024.desc')
     },
     {
       year: "2025",
-      icon: Trophy,
+      icon: Rocket,
       title: t('history.2025.title'),
-      desc: t('history.2025.desc'),
+      desc: t('history.2025.desc')
+    },
+    {
+      year: "2026",
+      icon: Trophy,
+      title: t('history.2026.title'),
+      desc: t('history.2026.desc'),
       image: matchAtlas
     }
   ];
