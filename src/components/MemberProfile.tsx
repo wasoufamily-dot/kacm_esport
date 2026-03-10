@@ -94,10 +94,6 @@ const MemberProfile = () => {
                 <p className="text-lg font-bold text-gray-900 dark:text-white">{currentMember.mainGame}</p>
               </div>
               <div className="space-y-1">
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Rôle dans l’équipe</p>
-                <p className="text-lg font-bold text-gray-900 dark:text-white">{currentMember.role}</p>
-              </div>
-              <div className="space-y-1">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Statut dans le club</p>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="text-green-500" size={18} />
