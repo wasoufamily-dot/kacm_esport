@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import sonixProfile from '@/assets/sonix-profile.png';
+import reflixProfile from '@/assets/reflix-profile.png';
 
 export interface Member {
   name: string;
@@ -44,6 +45,7 @@ const OFFICIAL_MEMBERS: Member[] = [
     role: "Support",
     status: "Joueur officiel",
     code: "KACM-FF-002",
+    photo: reflixProfile,
     stats: {
       kills: 8,
       damage: 7
