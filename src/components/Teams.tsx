@@ -22,19 +22,16 @@ const Teams = () => {
     { 
       name: "Y. BARKAMBIRI", 
       pseudo: "BARKA", 
-      role: "Capitaine",
       uid: "7781484110",
       accountImage: barkaAccount
     },
     { 
       name: "A. LAGMIHI", 
-      pseudo: "LAGMIHI", 
-      role: "Support" 
+      pseudo: "LAGMIHI"
     },
     { 
       name: "A. FAJRR", 
       pseudo: "N! SoN!cX", 
-      role: "Sniper",
       stats: { kills: 15, damage: 8 },
       uid: "2894971226",
       accountImage: sonixAccount,
@@ -42,8 +39,7 @@ const Teams = () => {
     },
     { 
       name: "M. ROUHI SARHANE", 
-      pseudo: "SARHANE", 
-      role: "IGL" 
+      pseudo: "SARHANE"
     }
   ];
 
@@ -104,7 +100,6 @@ const Teams = () => {
                         )}
 
                         <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                          <div className="text-red-500 font-black text-xs uppercase tracking-[0.2em] mb-1">{player.role}</div>
                           <div className="text-white font-black text-2xl italic uppercase tracking-tighter mb-1">{player.pseudo}</div>
                           <div className="text-gray-400 text-sm font-medium">{player.name}</div>
                           
