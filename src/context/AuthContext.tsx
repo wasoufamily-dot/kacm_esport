@@ -27,11 +27,15 @@ interface AuthContextType {
 const OFFICIAL_MEMBERS: Member[] = [
   {
     name: "Y. BARKAMBIRI",
-    pseudo: "BARKA",
+    pseudo: "YB7x",
     mainGame: "Free Fire",
     role: "co-owner / capitain",
     status: "Joueur officiel",
-    code: "KACM-FF-001"
+    code: "KACM-FF-001",
+    stats: {
+      kills: 3,
+      damage: 12
+    }
   },
   {
     name: "A. LAGMIHI",
