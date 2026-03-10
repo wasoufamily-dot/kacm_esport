@@ -14,13 +14,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import sonixAccount from '@/assets/sonix-account.png';
+import barkaAccount from '@/assets/barka-account.png';
 
 const Teams = () => {
   const ffPlayers = [
     { 
       name: "Y. BARKAMBIRI", 
       pseudo: "BARKA", 
-      role: "Capitaine" 
+      role: "Capitaine",
+      uid: "7781484110",
+      accountImage: barkaAccount
     },
     { 
       name: "A. LAGMIHI", 
