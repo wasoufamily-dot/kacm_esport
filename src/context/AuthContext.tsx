@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import sonixProfile from '@/assets/sonix-profile.png';
 
 export interface Member {
   name: string;
@@ -47,6 +48,7 @@ const OFFICIAL_MEMBERS: Member[] = [
     role: "Sniper",
     status: "Joueur officiel",
     code: "KACM-FF-003",
+    photo: sonixProfile,
     stats: {
       kills: 15,
       damage: 8
