@@ -19,6 +19,7 @@ import reflixAccount from '@/assets/reflix-account.png';
 import sonixProfile from '@/assets/sonix-profile.png';
 import barkaProfile from '@/assets/barka-profile.png';
 import reflixProfile from '@/assets/reflix-profile.png';
+import ffBg from '@/assets/ff-bg.png';
 
 const Teams = () => {
   const ffPlayers = [
@@ -78,87 +79,95 @@ const Teams = () => {
           </p>
         </div>
 
-        {/* Current Team: Free Fire */}
-        <div className="mb-20">
-          <div className="flex items-center gap-4 mb-12">
-            <div className="h-px flex-1 bg-gray-200 dark:bg-gray-800" />
-            <Badge className="bg-red-600 text-white px-8 py-2 text-xl font-black italic tracking-widest">FREE FIRE</Badge>
-            <div className="h-px flex-1 bg-gray-200 dark:bg-gray-800" />
+        {/* Current Team: Free Fire with Background */}
+        <div className="mb-20 relative rounded-[3rem] overflow-hidden p-8 md:p-12">
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img src={ffBg} alt="Free Fire Background" className="w-full h-full object-cover opacity-20 dark:opacity-10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 via-transparent to-gray-50/80 dark:from-gray-950/80 dark:via-transparent dark:to-gray-950/80" />
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {ffPlayers.map((player, i) => (
-              <Dialog key={i}>
-                <DialogTrigger asChild>
-                  <Card className={`group overflow-hidden border-none shadow-2xl bg-white dark:bg-gray-900 hover:scale-[1.02] transition-all duration-500 ${player.accountImage || player.profileImage ? 'cursor-pointer' : ''}`}>
-                    <CardContent className="p-0">
-                      <div className="aspect-[3/4] bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
-                        {player.profileImage && (
-                          <img 
-                            src={player.profileImage} 
-                            alt={player.pseudo} 
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                        )}
-                        
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-                        
-                        {player.accountImage && (
-                          <div className="absolute top-4 right-4 z-20 bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                            <ExternalLink size={16} />
-                          </div>
-                        )}
 
-                        <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                          <div className="text-white font-black text-2xl italic uppercase tracking-tighter mb-1">{player.pseudo}</div>
-                          <div className="text-gray-400 text-sm font-medium">{player.name}</div>
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-px flex-1 bg-red-600/20" />
+              <Badge className="bg-red-600 text-white px-8 py-2 text-xl font-black italic tracking-widest shadow-lg shadow-red-600/20">FREE FIRE</Badge>
+              <div className="h-px flex-1 bg-red-600/20" />
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {ffPlayers.map((player, i) => (
+                <Dialog key={i}>
+                  <DialogTrigger asChild>
+                    <Card className={`group overflow-hidden border-none shadow-2xl bg-white dark:bg-gray-900 hover:scale-[1.02] transition-all duration-500 ${player.accountImage || player.profileImage ? 'cursor-pointer' : ''}`}>
+                      <CardContent className="p-0">
+                        <div className="aspect-[3/4] bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
+                          {player.profileImage && (
+                            <img 
+                              src={player.profileImage} 
+                              alt={player.pseudo} 
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                          )}
                           
-                          {player.stats && (
-                            <div className="mt-4 flex gap-4 pt-4 border-t border-white/10">
-                              <div className="flex items-center gap-1.5">
-                                <Target size={14} className="text-red-600" />
-                                <span className="text-white font-bold text-sm">{player.stats.kills} Kills</span>
-                              </div>
-                              <div className="flex items-center gap-1.5">
-                                <Zap size={14} className="text-red-600" />
-                                <span className="text-white font-bold text-sm">{player.stats.damage} Dmg</span>
-                              </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+                          
+                          {player.accountImage && (
+                            <div className="absolute top-4 right-4 z-20 bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                              <ExternalLink size={16} />
                             </div>
                           )}
+
+                          <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
+                            <div className="text-white font-black text-2xl italic uppercase tracking-tighter mb-1">{player.pseudo}</div>
+                            <div className="text-gray-400 text-sm font-medium">{player.name}</div>
+                            
+                            {player.stats && (
+                              <div className="mt-4 flex gap-4 pt-4 border-t border-white/10">
+                                <div className="flex items-center gap-1.5">
+                                  <Target size={14} className="text-red-600" />
+                                  <span className="text-white font-bold text-sm">{player.stats.kills} Kills</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                  <Zap size={14} className="text-red-600" />
+                                  <span className="text-white font-bold text-sm">{player.stats.damage} Dmg</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
+                      </CardContent>
+                    </Card>
+                  </DialogTrigger>
+                  
+                  {player.accountImage && (
+                    <DialogContent className="max-w-3xl bg-gray-900 border-gray-800 text-white p-0 overflow-hidden rounded-[2rem]">
+                      <DialogHeader className="p-6 bg-black/50 backdrop-blur-sm border-b border-white/10">
+                        <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter flex items-center justify-between">
+                          <span>Compte de {player.pseudo}</span>
+                          {player.uid && (
+                            <Button 
+                              onClick={() => copyToClipboard(player.uid!)}
+                              variant="outline" 
+                              className="bg-red-600 hover:bg-red-700 border-none text-white rounded-xl gap-2"
+                            >
+                              <Copy size={16} />
+                              Copier ID: {player.uid}
+                            </Button>
+                          )}
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="relative aspect-video w-full">
+                        <img 
+                          src={player.accountImage} 
+                          alt={`Compte de ${player.pseudo}`} 
+                          className="w-full h-full object-contain bg-black"
+                        />
                       </div>
-                    </CardContent>
-                  </Card>
-                </DialogTrigger>
-                
-                {player.accountImage && (
-                  <DialogContent className="max-w-3xl bg-gray-900 border-gray-800 text-white p-0 overflow-hidden rounded-[2rem]">
-                    <DialogHeader className="p-6 bg-black/50 backdrop-blur-sm border-b border-white/10">
-                      <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter flex items-center justify-between">
-                        <span>Compte de {player.pseudo}</span>
-                        {player.uid && (
-                          <Button 
-                            onClick={() => copyToClipboard(player.uid!)}
-                            variant="outline" 
-                            className="bg-red-600 hover:bg-red-700 border-none text-white rounded-xl gap-2"
-                          >
-                            <Copy size={16} />
-                            Copier ID: {player.uid}
-                          </Button>
-                        )}
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="relative aspect-video w-full">
-                      <img 
-                        src={player.accountImage} 
-                        alt={`Compte de ${player.pseudo}`} 
-                        className="w-full h-full object-contain bg-black"
-                      />
-                    </div>
-                  </DialogContent>
-                )}
-              </Dialog>
-            ))}
+                    </DialogContent>
+                  )}
+                </Dialog>
+              ))}
+            </div>
           </div>
         </div>
 
