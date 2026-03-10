@@ -28,7 +28,7 @@ interface AuthContextType {
 const OFFICIAL_MEMBERS: Member[] = [
   {
     name: "Y. BARKAMBIRI",
-    pseudo: "YB7x",
+    pseudo: "☯︎ᴹᵀᴺ‎ㅤ࿐ＹＢ７メ",
     mainGame: "Free Fire",
     role: "co-owner / capitain",
     status: "Joueur officiel",

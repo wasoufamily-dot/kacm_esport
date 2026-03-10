@@ -25,7 +25,7 @@ const Teams = () => {
   const ffPlayers = [
     { 
       name: "Y. BARKAMBIRI", 
-      pseudo: "YB7x", 
+      pseudo: "☯︎ᴹᵀᴺ‎ㅤ࿐ＹＢ７メ", 
       uid: "7781484110",
       accountImage: barkaAccount,
       profileImage: barkaProfile,
