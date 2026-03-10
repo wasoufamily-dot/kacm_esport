@@ -10,11 +10,12 @@ import {
   DialogHeader, 
   DialogTitle, 
   DialogTrigger 
-} from "@/components/ui/dialog";
+} from "@/Dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import sonixAccount from '@/assets/sonix-account.png';
 import barkaAccount from '@/assets/barka-account.png';
+import reflixAccount from '@/assets/reflix-account.png';
 import sonixProfile from '@/assets/sonix-profile.png';
 import barkaProfile from '@/assets/barka-profile.png';
 import reflixProfile from '@/assets/reflix-profile.png';
@@ -33,7 +34,9 @@ const Teams = () => {
       name: "A. LAGMIHI", 
       pseudo: "sh Reflix",
       profileImage: reflixProfile,
-      stats: { kills: 8, damage: 7 }
+      stats: { kills: 8, damage: 7 },
+      uid: "7711349537",
+      accountImage: reflixAccount
     },
     { 
       name: "A. FAJRR", 
