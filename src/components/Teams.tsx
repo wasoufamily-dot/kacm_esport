@@ -10,7 +10,7 @@ import {
   DialogHeader, 
   DialogTitle, 
   DialogTrigger 
-} from "@/Dialog";
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import sonixAccount from '@/assets/sonix-account.png';
