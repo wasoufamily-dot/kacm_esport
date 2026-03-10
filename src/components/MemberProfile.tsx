@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
-import { Camera, LogOut, ShieldCheck, Gamepad2, User as UserIcon, Trophy } from 'lucide-react';
+import { Camera, LogOut, ShieldCheck, Gamepad2, User as UserIcon, Trophy, Target, Zap } from 'lucide-react';
 import { toast } from "sonner";
 
 const MemberProfile = () => {
@@ -110,6 +110,35 @@ const MemberProfile = () => {
               </div>
             </div>
           </div>
+
+          {/* Stats Section */}
+          {currentMember.stats && (
+            <div className="bg-white dark:bg-gray-900 rounded-[2rem] p-8 shadow-xl border border-gray-100 dark:border-gray-800">
+              <h3 className="text-xl font-black uppercase italic text-gray-900 dark:text-white mb-8 flex items-center gap-3">
+                <Trophy className="text-red-600" /> Historique de combat
+              </h3>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 flex items-center gap-4">
+                  <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600">
+                    <Target size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Kills</p>
+                    <p className="text-2xl font-black text-gray-900 dark:text-white">{currentMember.stats.kills}</p>
+                  </div>
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-100 dark:border-gray-700 flex items-center gap-4">
+                  <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center text-red-600">
+                    <Zap size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Damage</p>
+                    <p className="text-2xl font-black text-gray-900 dark:text-white">{currentMember.stats.damage}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="space-y-6">

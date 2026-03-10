@@ -10,6 +10,10 @@ export interface Member {
   status: string;
   code: string;
   photo?: string;
+  stats?: {
+    kills: number;
+    damage: number;
+  };
 }
 
 interface AuthContextType {
@@ -38,11 +42,15 @@ const OFFICIAL_MEMBERS: Member[] = [
   },
   {
     name: "A. FAJRR",
-    pseudo: "FAJRR",
+    pseudo: "N! SoN!cX",
     mainGame: "Free Fire",
     role: "Sniper",
     status: "Joueur officiel",
-    code: "KACM-FF-003"
+    code: "KACM-FF-003",
+    stats: {
+      kills: 15,
+      damage: 8
+    }
   },
   {
     name: "M. ROUHI SARHANE",
@@ -72,7 +80,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     );
     
     if (member) {
-      // Check if there's a saved photo for this member code
       const savedPhoto = localStorage.getItem(`photo_${member.code}`);
       const memberWithPhoto = savedPhoto ? { ...member, photo: savedPhoto } : member;
       
