@@ -17,6 +17,7 @@ import sonixAccount from '@/assets/sonix-account.png';
 import barkaAccount from '@/assets/barka-account.png';
 import sonixProfile from '@/assets/sonix-profile.png';
 import barkaProfile from '@/assets/barka-profile.png';
+import reflixProfile from '@/assets/reflix-profile.png';
 
 const Teams = () => {
   const ffPlayers = [
@@ -30,7 +31,9 @@ const Teams = () => {
     },
     { 
       name: "A. LAGMIHI", 
-      pseudo: "LAGMIHI"
+      pseudo: "sh Reflix",
+      profileImage: reflixProfile,
+      stats: { kills: 8, damage: 7 }
     },
     { 
       name: "A. FAJRR", 

@@ -39,11 +39,15 @@ const OFFICIAL_MEMBERS: Member[] = [
   },
   {
     name: "A. LAGMIHI",
-    pseudo: "LAGMIHI",
+    pseudo: "sh Reflix",
     mainGame: "Free Fire",
     role: "Support",
     status: "Joueur officiel",
-    code: "KACM-FF-002"
+    code: "KACM-FF-002",
+    stats: {
+      kills: 8,
+      damage: 7
+    }
   },
   {
     name: "A. FAJRR",
