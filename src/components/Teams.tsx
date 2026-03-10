@@ -48,7 +48,8 @@ const Teams = () => {
     },
     { 
       name: "M. ROUHI SARHANE", 
-      pseudo: "SARHANE"
+      pseudo: "N! TwenXx",
+      stats: { kills: 12, damage: 9 }
     }
   ];
 

@@ -66,11 +66,15 @@ const OFFICIAL_MEMBERS: Member[] = [
   },
   {
     name: "M. ROUHI SARHANE",
-    pseudo: "SARHANE",
+    pseudo: "N! TwenXx",
     mainGame: "Free Fire",
     role: "Leader / IGL",
     status: "Capitaine",
-    code: "KACM-FF-004"
+    code: "KACM-FF-004",
+    stats: {
+      kills: 12,
+      damage: 9
+    }
   }
 ];
 
