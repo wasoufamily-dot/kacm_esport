@@ -33,7 +33,7 @@ const History = () => {
       icon: Award,
       title: t('history.2026_2.title'),
       desc: t('history.2026_2.desc'),
-      videoUrl: "https://www.youtube.com/embed/nMQWYt_8Cnk" 
+      videoUrl: "https://www.youtube.com/embed/Fjz_kCTd0FY" 
     }
   ];
 
