@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import sonixAccount from '@/assets/sonix-account.png';
 import barkaAccount from '@/assets/barka-account.png';
 import sonixProfile from '@/assets/sonix-profile.png';
+import barkaProfile from '@/assets/barka-profile.png';
 
 const Teams = () => {
   const ffPlayers = [
@@ -24,6 +25,7 @@ const Teams = () => {
       pseudo: "YB7x", 
       uid: "7781484110",
       accountImage: barkaAccount,
+      profileImage: barkaProfile,
       stats: { kills: 3, damage: 12 }
     },
     { 
