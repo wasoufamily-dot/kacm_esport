@@ -18,7 +18,7 @@ export interface Member {
 
 interface AuthContextType {
   currentMember: Member | null;
-  login: (name: string, code: string) => boolean;
+  login: (pseudo: string, code: string) => boolean;
   logout: () => void;
   updatePhoto: (photoUrl: string) => void;
 }
@@ -74,9 +74,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  const login = (name: string, code: string) => {
+  const login = (pseudo: string, code: string) => {
     const member = OFFICIAL_MEMBERS.find(
-      m => m.name.toLowerCase() === name.toLowerCase() && m.code === code
+      m => m.pseudo.toLowerCase() === pseudo.toLowerCase() && m.code === code
     );
     
     if (member) {

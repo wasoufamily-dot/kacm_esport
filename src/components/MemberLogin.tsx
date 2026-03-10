@@ -9,17 +9,17 @@ import { toast } from "sonner";
 import { Lock, User } from 'lucide-react';
 
 const MemberLogin = () => {
-  const [name, setName] = useState("");
+  const [pseudo, setPseudo] = useState("");
   const [code, setCode] = useState("");
   const { login } = useAuth();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const success = login(name, code);
+    const success = login(pseudo, code);
     if (success) {
       toast.success("Connexion réussie !");
     } else {
-      toast.error("Nom ou code incorrect. Veuillez contacter l'administrateur.");
+      toast.error("Pseudo ou code incorrect. Veuillez contacter l'administrateur.");
     }
   };
 
@@ -35,18 +35,18 @@ const MemberLogin = () => {
 
       <form onSubmit={handleSubmit} className="p-8 space-y-8">
         <div className="space-y-3">
-          <Label htmlFor="name" className="text-[13px] font-black uppercase tracking-wider text-slate-500 block">
-            Nom du membre
+          <Label htmlFor="pseudo" className="text-[13px] font-black uppercase tracking-wider text-slate-500 block">
+            Pseudo gaming
           </Label>
           <div className="relative group">
             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors">
               <User size={20} />
             </div>
             <Input 
-              id="name"
-              placeholder="Nom du membre" 
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id="pseudo"
+              placeholder="Votre pseudo" 
+              value={pseudo}
+              onChange={(e) => setPseudo(e.target.value)}
               className="pl-12 pr-4 py-7 rounded-2xl border-2 border-slate-100 focus:border-red-600 focus:ring-0 transition-all text-lg font-medium placeholder:text-slate-300"
               required
             />
