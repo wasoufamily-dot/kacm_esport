@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import sonixAccount from '@/assets/sonix-account.png';
 import barkaAccount from '@/assets/barka-account.png';
+import sonixProfile from '@/assets/sonix-profile.png';
 
 const Teams = () => {
   const ffPlayers = [
@@ -36,7 +37,8 @@ const Teams = () => {
       role: "Sniper",
       stats: { kills: 15, damage: 8 },
       uid: "2894971226",
-      accountImage: sonixAccount
+      accountImage: sonixAccount,
+      profileImage: sonixProfile
     },
     { 
       name: "M. ROUHI SARHANE", 
@@ -82,9 +84,17 @@ const Teams = () => {
             {ffPlayers.map((player, i) => (
               <Dialog key={i}>
                 <DialogTrigger asChild>
-                  <Card className={`group overflow-hidden border-none shadow-2xl bg-white dark:bg-gray-900 hover:scale-[1.02] transition-all duration-500 ${player.accountImage ? 'cursor-pointer' : ''}`}>
+                  <Card className={`group overflow-hidden border-none shadow-2xl bg-white dark:bg-gray-900 hover:scale-[1.02] transition-all duration-500 ${player.accountImage || player.profileImage ? 'cursor-pointer' : ''}`}>
                     <CardContent className="p-0">
                       <div className="aspect-[3/4] bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
+                        {player.profileImage && (
+                          <img 
+                            src={player.profileImage} 
+                            alt={player.pseudo} 
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                        )}
+                        
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
                         
                         {player.accountImage && (
